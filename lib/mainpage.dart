@@ -1,9 +1,8 @@
-
-import 'package:clone_app/search.dart';
-import 'package:clone_app/homepage.dart';
+import 'package:clone_app/Screens/account.dart';
 import 'package:flutter/material.dart';
-
-import 'explore.dart';
+import 'Screens/HomePage.dart';
+import 'Screens/explore.dart';
+import 'Screens/search.dart';
 
 void main() {
  runApp(MaterialApp(
@@ -30,6 +29,7 @@ class _CloneAppState extends State<CloneApp> {
     HomePage(),
     SearchPage(),
     Explore(),
+    Account(),
   ];
 
   @override
