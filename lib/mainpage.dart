@@ -24,51 +24,36 @@ class CloneApp extends StatefulWidget {
 }
 
 class _CloneAppState extends State<CloneApp> {
+
+  int selectPage = 0;
+  final screens = [
+    HomePage(),
+    SearchPage(),
+    Explore(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-
-   int selectindex = 0;
-   PageController pageController = PageController();
-
-    void onTapitem(int pagevalue) {
-      setState(() {
-        selectindex = pagevalue;
-      });
-      pageController.jumpToPage(pagevalue);
-    }
-
-
     return Scaffold(
       backgroundColor: Colors.black,
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: true,
+        currentIndex: selectPage,
         selectedItemColor: Colors.blue,
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.black,),label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.home,),label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Account'),
-
         ],
-        currentIndex: selectindex,
-        onTap: onTapitem,
-      ),
-
-      body: PageView(
-        controller: pageController,
-        children:<Widget> [
-          HomePage(),
-          SearchPage(),
-          Explore(),
-        ],
-        onPageChanged: (value){
+        onTap: (index){
           setState(() {
-            selectindex = value;
+            selectPage = index;
           });
         },
-      )
+      ),
+      body: screens[selectPage],
     );
   }
 }
