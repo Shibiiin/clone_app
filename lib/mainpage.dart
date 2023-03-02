@@ -1,15 +1,15 @@
 
 import 'package:clone_app/Screens/navbar.dart';
+import 'package:clone_app/Signin_page/SigninPage.dart';
+import 'package:clone_app/onboard_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'modals/provider.dart';
-
+import 'Signin_page/onboard.dart';
 
 void main() {
- runApp(ChangeNotifierProvider(
-   child: CloneApp(),
-   create: (_)=> MovieProvider(),
+ runApp(MaterialApp(
+   home: CloneApp(),
+   debugShowCheckedModeBanner: false,
  ));
 }
 
@@ -20,7 +20,7 @@ class CloneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: NavBar(),
+      home: OnBoard(),
       debugShowCheckedModeBanner: false,
     );
   }

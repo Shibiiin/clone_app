@@ -1,13 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:clone_app/Category/top%20rated.dart';
 import 'package:clone_app/Screens/slider.dart';
+import 'package:clone_app/Screens/videoplayer.dart';
+import 'package:clone_app/Signin_page/signin_dash.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 
-import '../Screens/movie list.dart';
-import '../modals/provider.dart';
+
+
+import '../Category/english.dart';
 import '../Screens/content.dart';
-import '../Screens/listscreen.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,8 +22,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var movies = context.watch<MovieProvider>().movies;
-    var myList = context.watch<MovieProvider>().myList;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -30,49 +31,19 @@ class _HomePageState extends State<HomePage> {
             leading: Image.network(
                 'https://www.edigitalagency.com.au/wp-content/uploads/Netflix-N-Symbol-logo-red-transparent-RGB-png.png'),
             backgroundColor: Colors.black,
-            actions: <Widget>[
+            actions:  <Widget>[
               Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: MaterialButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Tv Shows',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
+                padding: EdgeInsets.only(
+                    right: MediaQuery.of(context).viewInsets.right,
+                     top: 10),
+                child:
+                  Container(
+                      width: 200,
+                      color: Colors.black,
+                      child: Dash(),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: MaterialButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Movies',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyListScreen()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(vertical: 10)),
-                  child: Text(
-                    'My List ${myList.length}',
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-              ),
-            ],
+                ],
           ),
 
           SliverToBoxAdapter(
@@ -89,11 +60,49 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-        Container(
-          height: 700,
-              color: Colors.red,
-              child: MovieList(),
+       const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 15.0),
+              child: Text('Top Rated',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
+        ),
+
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 250,
+            child: TopRated(),
+          ),
+        ),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Text('English Movie',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 250,
+              child: Eng(),
+            ),
+          ),
+
+        // Container(
+        //   height: 700,
+        //       color: Colors.red,
+        //       child: MovieList(),
+        //     ),
 
 
 
